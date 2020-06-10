@@ -1,37 +1,33 @@
-package com.github.curriculeon;
+package com.github.perscholas;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-public class GetFirstElementTest {
-    // given
+public class GetSecondElementTest {
     private void test(String[] array, String expected) {
-        // when
-        String actual = StringArrayUtils.getFirstElement(array);
-
-        // then
+        String actual = StringArrayUtils.getSecondElement(array);
         Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void testGetFirstElement1() {
+    public void testGetSecondElement1() {
         String[] array = {"the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"};
-        String expected = "the";
-        test(array, expected);
-    }
-
-    @Test
-    public void testGetFirstElement2() {
-        String[] array = {"quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"};
         String expected = "quick";
         test(array, expected);
     }
 
+    @Test
+    public void testGetSecondElement2() {
+        String[] array = {"quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"};
+        String expected = "brown";
+        test(array, expected);
+    }
+
 
     @Test
-    public void testGetFirstElement3() {
+    public void testGetSecondElement3() {
         String[] array = {"brown", "fox", "jumps", "over", "the", "lazy", "dog"};
-        String expected = "brown";
+        String expected = "fox";
         test(array, expected);
     }
 }

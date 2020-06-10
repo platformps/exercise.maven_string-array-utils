@@ -1,4 +1,4 @@
-package com.github.curriculeon;
+package com.github.perscholas;
 
 /**
  * Created by leon on 1/29/18.

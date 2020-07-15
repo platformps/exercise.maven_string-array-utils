@@ -124,10 +124,15 @@ public class StringArrayUtils {
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
         int removeValues = getNumberOfOccurrences(array, valueToRemove);
+        int nextWordAdded = 0;
         String[] returnArray = new String[array.length - removeValues]; // will have the length of the array without the removed values
-        for(int pos = 0; pos < array.length - 1; pos++){
+        for(int pos = 0; pos < array.length; pos++){
             if(array[pos].equals(valueToRemove)) {
-                continue;
+
+            }
+            else{
+                returnArray[nextWordAdded] = array[pos];
+                nextWordAdded++;
             }
         }
         return returnArray;
@@ -137,7 +142,17 @@ public class StringArrayUtils {
      * @param array array of chars
      * @return array of Strings with consecutive duplicates removes
      */ // TODO
-    public static String[] removeConsecutiveDuplicates(String[] array) {
+    public static String[] removeConsecutiveDuplicates(String[] array){
+        int pos = 0;
+        //String[] returnArray = new String[];
+        String currentString, previousString;
+        currentString = array[0];
+        previousString = currentString;
+        pos++;
+        while(pos < array.length){
+            currentString = array[pos];
+
+        }
         return null;
     }
 
@@ -146,7 +161,11 @@ public class StringArrayUtils {
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
+        int position = 0;
+        String previousString;
+        String currentString = array[position];
         StringBuilder sb = new StringBuilder("");
+        position++;
         return null;
     }
 

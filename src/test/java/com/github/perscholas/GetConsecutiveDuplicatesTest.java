@@ -8,8 +8,6 @@ import java.util.Arrays;
 public class GetConsecutiveDuplicatesTest {
     private void test(String[] array, String[] expectedArray) {
         String[] actual = StringArrayUtils.removeConsecutiveDuplicates(array);
-        System.out.println(Arrays.toString(expectedArray));
-        System.out.println(Arrays.toString(actual));
         Assert.assertEquals(actual, expectedArray);
     }
     

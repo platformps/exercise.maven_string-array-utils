@@ -1,6 +1,7 @@
 package com.github.perscholas;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -78,7 +79,9 @@ public class StringArrayUtils {
      * @return true if the order of the array is the same backwards and forwards
      */ // TODO
     public static Boolean isPalindromic(String[] array) {
-        return (array.equals(reverse(array)));
+        String[] array1=reverse(array);
+        for(int i=0;i<array.length;i++)if(array[i]!=array1[i])return false;
+        return true;
     }
 
     /**
@@ -87,10 +90,11 @@ public class StringArrayUtils {
      */ // TODO
     public static Boolean isPangramic(String[] array) {
         String alpha="abcdefghijklmnopqrstuvwxyz";
-        String mash=array.toString();
-        char carat=' ';
+        String beta="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String mash= Arrays.toString(array);
+
         for(int i =0;i<=alpha.length()-1;i++){
-            if(!mash.contains(Character.toString((alpha.charAt(i)))))return false;
+            if(!mash.contains(Character.toString((alpha.charAt(i)))) &&!mash.contains(Character.toString((beta.charAt(i)))))return false;
         }
 
         return true;
@@ -134,6 +138,7 @@ public class StringArrayUtils {
     public static String[] removeConsecutiveDuplicates(String[] array) {
 
         List<String> nwstring = new ArrayList<String>();
+        nwstring.add(array[0]);
         for (int i = 1; i < array.length; i++) {
             if (!array[i].equals(array[i-1])) {
                 nwstring.add(array[i]);
@@ -150,10 +155,16 @@ public class StringArrayUtils {
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
         List<String> nwstring = new ArrayList<String>();
+        String cumult="";
         for (int i = 0; i < array.length-1; i++) {
-           if(array[i].equals(array[i+1])){
-               nwstring.add(array[i]+array[i+1]);i++;
-           }else nwstring.add(array[i]);
+            int k=1;
+          if(array[i]==array[i+1]) {while(array[i].equals(array[i+k])){
+               cumult=cumult+array[i];k++;}
+               cumult=cumult+array[i];
+            nwstring.add(cumult);
+              cumult="";
+            i=i+k-1;if((i+k)==array.length-1)break;}//advance counter to offset
+           else {nwstring.add(array[i]);} //current position was not the same as its neighbor
         }
         String[] nwarray = new String[nwstring.size()];
         nwarray = nwstring.toArray(nwarray);

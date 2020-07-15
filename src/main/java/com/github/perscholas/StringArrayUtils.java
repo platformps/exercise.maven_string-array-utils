@@ -158,7 +158,14 @@ public class StringArrayUtils {
      * @return array of Strings with consecutive duplicates removes
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
-        return null;
+        //ArrayList<String> result = new ArrayList<String>(Arrays.asList(array));
+        String[] result = array;
+        for (int i = 0; i < array.length - 1; i++) {
+            if (array[i].equals(array[i+1]))
+                result = removeValue(result, array[i]); //remove only consequtive duplicates
+        }
+        return result;
+        //return null;
     }
 
     /**

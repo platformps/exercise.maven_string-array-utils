@@ -20,6 +20,7 @@ package com.github.perscholas;
  */
 
 import java.util.Arrays;
+import java.util.*;
 
 /**
  * Implemented methods
@@ -102,7 +103,20 @@ public class StringArrayUtils {
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static Boolean isPangramic(String[] array) {
-        
+        char[] alphabets = {'A','B','C','D','E','F','G','H','I','J','K','L',
+                'M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
+                'a','b','c','d','e','f','g','h','i','j',
+                'k','l','m','n','o','p','q','r',
+                's','t','u','v','w','x','y','z'};
+
+        char value;
+        String input = "";
+        for (int i = 0; i < array.length; i++){
+            input = array[i];
+            for (int j = 0; j < input.length(); j++) {
+                if (toString((input.charAt(j))))
+            }
+        }
         //return null;
     }
 
@@ -112,7 +126,13 @@ public class StringArrayUtils {
      * @return number of occurrences the specified `value` has occurred
      */ // TODO
     public static int getNumberOfOccurrences(String[] array, String value) {
-        return 0;
+        int count = 0;
+       for (int i = 0;i < array.length; i++) {
+           if (array[i].equals(value))
+               count++;
+       }
+       return count;
+        // return 0;
     }
 
     /**
@@ -121,7 +141,11 @@ public class StringArrayUtils {
      * @return array with identical contents excluding values of `value`
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
-        return null;
+        //convert array to arrrylist
+        ArrayList<String> arraylist= new ArrayList<String>(Arrays.asList(array));
+        arraylist.remove(valueToRemove);
+        return arraylist.toArray(new String[0]);
+        //return null;
     }
 
     /**

@@ -13,7 +13,7 @@ public class GetNumberOfOccurrencesTest {
     @Test
     public void testGetNumberOfOccurrences1() {
         String[] array = {"aba", "aba", "baa", "bab", "bba", "bba", "bba", "bba", "bbb", "bbb"};
-        int expected = 4;
+        int expected = 2;
         test(array, expected);
     }
 
@@ -27,8 +27,7 @@ public class GetNumberOfOccurrencesTest {
     @Test
     public void testGetNumberOfOccurrences3() {
         String[] array = {"aba", "aba", "baa", "bab", "bba", "bba", "bba", "bba", "bbb", "bbb"};
-        int expected = 4;
+        int expected = 2;
         test(array, expected);
     }
-
 }

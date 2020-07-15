@@ -1,5 +1,7 @@
 package com.github.perscholas;
 
+import java.util.Arrays;
+
 /**
  * Created by leon on 1/29/18.
  */
@@ -9,7 +11,8 @@ public class StringArrayUtils {
      * @return first element of specified array
      */ // TODO
     public static String getFirstElement(String[] array) {
-        return null;
+     String valueFirst = array[0];
+        return (valueFirst);
     }
 
     /**
@@ -17,7 +20,8 @@ public class StringArrayUtils {
      * @return second element in specified array
      */
     public static String getSecondElement(String[] array) {
-        return null;
+        String valueSecond = array[1];
+        return (valueSecond);
     }
 
     /**
@@ -25,7 +29,8 @@ public class StringArrayUtils {
      * @return last element in specified array
      */ // TODO
     public static String getLastElement(String[] array) {
-        return null;
+        String valueLast = array[array.length-1];
+        return (valueLast);
     }
 
     /**
@@ -33,7 +38,8 @@ public class StringArrayUtils {
      * @return second to last element in specified array
      */ // TODO
     public static String getSecondToLastElement(String[] array) {
-        return null;
+        String valueSecondLast = array[array.length-2];
+        return (valueSecondLast);
     }
 
     /**
@@ -42,15 +48,24 @@ public class StringArrayUtils {
      * @return true if the array contains the specified `value`
      */ // TODO
     public static boolean contains(String[] array, String value) {
+        for (String element : array) {
+            if (element == value)
+                return true;
+            }
         return false;
     }
+
 
     /**
      * @param array of String objects
      * @return an array with identical contents in reverse order
      */ // TODO
     public static String[] reverse(String[] array) {
-        return null;
+        String [] newArray = new String[array.length];
+        for(int i = 0;i<array.length;i++) {
+            newArray[i] = array[array.length - i - 1];
+        }
+        return newArray;
     }
 
     /**
@@ -58,7 +73,12 @@ public class StringArrayUtils {
      * @return true if the order of the array is the same backwards and forwards
      */ // TODO
     public static Boolean isPalindromic(String[] array) {
-        return null;
+        String [] newArray = new String[array.length];  //or just call the reverse(array) function
+        for(int i = 0;i<array.length;i++) {
+            newArray[i] = array[array.length - i - 1];
+        }
+        return Arrays.equals(array, newArray);
+
     }
 
     /**
@@ -75,7 +95,12 @@ public class StringArrayUtils {
      * @return number of occurrences the specified `value` has occurred
      */ // TODO
     public static int getNumberOfOccurrences(String[] array, String value) {
-        return 0;
+        int count = 0;
+        for (String val:array) {
+            if (val.equals(value))
+                count++;
+        }
+        return count;
     }
 
     /**

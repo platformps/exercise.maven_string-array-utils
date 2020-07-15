@@ -175,6 +175,4 @@ public class StringArrayUtils {
         }
         return Arrays.copyOf(result, resultIndex+1);
     }
-    
-    
 }

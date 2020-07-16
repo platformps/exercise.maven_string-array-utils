@@ -126,10 +126,9 @@ public class StringArrayUtils {
      * @return array with identical contents excluding values of `value`
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
-        int numberOfOccurrences = getNumberOfOccurrences(array, valueToRemove);
-        List<String> result = new ArrayList(array.length - numberOfOccurrences + 1);
+        List<String> result = new ArrayList<>();
         for (int i = 0; i < array.length; i++) {
-           if(!result.contains(array[i].toLowerCase())) result.add(array[i].toLowerCase());
+            if(array[i] != valueToRemove) result.add(array[i]);
         }
         return result.toArray(new String[result.size()]);
     }
@@ -139,7 +138,18 @@ public class StringArrayUtils {
      * @return array of Strings with consecutive duplicates removes
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
-        return null;
+        List<String> result = new ArrayList<>();
+        String str = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if(str == array[i]) {
+                continue;
+            } else {
+                result.add(str);
+                str = array[i];
+            }
+        }
+        result.add(str);
+        return result.toArray(new String[result.size()]);
     }
 
     /**
@@ -147,6 +157,21 @@ public class StringArrayUtils {
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
-        return null;
+        String str = array[0];
+        String packStr = str;
+        List<String> result = new ArrayList<>();
+        for (int i = 1; i < array.length; i++) {
+            if(str == array[i]) {
+                packStr += array[i];
+            } else {
+                result.add(packStr);
+                str = array[i];
+                packStr = str;
+            }
+        }
+        result.add(packStr);
+        return result.toArray(new String[result.size()]);
     }
 }
+
+

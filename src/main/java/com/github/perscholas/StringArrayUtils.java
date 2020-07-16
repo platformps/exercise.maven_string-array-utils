@@ -1,6 +1,8 @@
 package com.github.perscholas;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by leon on 1/29/18.
@@ -86,8 +88,45 @@ public class StringArrayUtils {
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static Boolean isPangramic(String[] array) {
-        return null;
+        //String[] array = {"The quick brown", "Fox jumps over", "The lazy dog"};
+        String elements = "";
+        for (int i = 0; i < array.length; i++){
+            elements += array[i];
     }
+        //System.out.println(elements); made an entire strings from array elements to compare
+        boolean[] mark = new boolean[26];
+
+        // For indexing in mark[]
+        int index = 0;
+
+        // Traverse all characters
+        for (int i = 0; i < elements.length(); i++) {
+            // If uppercase character, subtract 'A' to find index.
+            if ('A' <= elements.charAt(i) && elements.charAt(i) <= 'Z')
+                index = elements.charAt(i) - 'A';
+
+                // If lowercase character, subtract 'a'
+                // to find index.
+            else if ('a' <= elements.charAt(i) && elements.charAt(i) <= 'z') {
+                index = elements.charAt(i) - 'a';
+            }
+
+                // If this character is other than english
+                // lowercase and uppercase characters.
+            else
+                continue;
+            mark[index] = true;
+        }
+
+        // Return false if any character is unmarked
+        for (int i = 0; i <= 25; i++)
+            if (mark[i] == false)
+                return (false);
+
+         //If all characters were present
+        return (true);
+    }
+
 
     /**
      * @param array array of String objects
@@ -109,7 +148,16 @@ public class StringArrayUtils {
      * @return array with identical contents excluding values of `value`
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
-        return null;
+        ArrayList<String> newArray = new ArrayList();
+        if (!contains(array,valueToRemove))
+            return array;
+        for (String s : array) {
+            if (s.equals(valueToRemove))
+                continue;
+            newArray.add(s);
+        }
+        String[] tempArray = new String[newArray.size()];
+        return  newArray.toArray(tempArray);
     }
 
     /**
@@ -117,7 +165,22 @@ public class StringArrayUtils {
      * @return array of Strings with consecutive duplicates removes
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
-        return null;
+        List<String> newArraylist = new ArrayList();
+
+        newArraylist.add(array[0]);
+
+        for(int i=1;i<array.length;i++) {
+            if(array[i]!=newArraylist.get(newArraylist.size()-1)) {
+                newArraylist.add(array[i]);
+            }
+        }
+
+        int lstSize = newArraylist.size();
+        String[] revisedArray = new String[lstSize];
+        for(int i = 0; i < lstSize; i++) {
+            revisedArray[i] = newArraylist.get(i);
+        }
+        return revisedArray;
     }
 
     /**
@@ -125,7 +188,28 @@ public class StringArrayUtils {
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
-        return null;
+        ArrayList<String> newArray = new ArrayList();
+        int count = 0;
+        int element = 0;
+        for(int i = 0; i<array.length; i++){
+            if(count > 0 ) {
+                count--;
+                continue;
+            }
+            newArray.add(array[i]);
+            for(int j = i+1; j<array.length;j++){
+                if(array[j].equals(array[i])) {
+                    newArray.set(element, newArray.get(element) + array[j]);
+                    count ++;
+
+                }
+                else
+                    break;
+            }
+            element++;
+        }
+        String[] revisedArray = new String[newArray.size()];
+        return  newArray.toArray(revisedArray);
     }
 
 

@@ -43,7 +43,7 @@ public class StringArrayUtils {
      */ // TODO
     public static boolean contains(String[] array, String value) {
         for (String s : array) {
-            if(s == value) {
+            if(s.equals(value)) {
                 return true;
             }
         }
@@ -83,7 +83,24 @@ public class StringArrayUtils {
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static Boolean isPangramic(String[] array) {
-        return null;
+        String temp = "";
+        int letter = 0;
+        boolean[] letterIsPresent = new boolean[26];
+        for(int i = 0; i < array.length; i++) {
+            temp = array[i].toLowerCase();
+            for(int j = 0; j < temp.length(); j++) {
+                letter = ((int) temp.charAt(j) - 97);
+                if (letter >= 0 && letter <= 25) {
+                    letterIsPresent[letter] = true;
+                }
+            }
+        }
+        for (int i = 0; i < letterIsPresent.length; i++) {
+            if(!letterIsPresent[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -93,8 +110,8 @@ public class StringArrayUtils {
      */ // TODO
     public static int getNumberOfOccurrences(String[] array, String value) {
         int occurrenceCount = 0;
-        for (int i = 0; i < array.length; i++) {
-            if(array[i].equals(value)) {
+        for (String s : array) {
+            if (s.equals(value)) {
                 occurrenceCount++;
             }
         }
@@ -107,7 +124,15 @@ public class StringArrayUtils {
      * @return array with identical contents excluding values of `value`
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
-        return null;
+        String[] arrayWithValueRemoved = new String[(array.length-1)];
+        int counter = 0;
+        for (int i = 0; i < array.length; i++) {
+            if(!valueToRemove.equals(array[i])) {
+                arrayWithValueRemoved[counter] = array[i];
+                counter++;
+            }
+        }
+        return arrayWithValueRemoved;
     }
 
     /**

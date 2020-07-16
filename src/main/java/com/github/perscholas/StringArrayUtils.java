@@ -193,17 +193,13 @@ public class StringArrayUtils {
                 temp += array[i];
 
             }
-            else if(!isDuplicate[i] && i == (array.length)) {
-                newArray[newArray.length - 1] = temp;
-
-            }
             else {
                 newArray[count] = temp;
                 temp = array[i];
                 count++;
             }
         }
-        System.out.println(Arrays.toString(newArray));
+        newArray[(newArray.length - 1)] = temp;
         return newArray;
     }
 

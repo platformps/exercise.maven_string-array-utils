@@ -1,5 +1,7 @@
 package com.github.perscholas;
 
+import java.util.Arrays;
+
 /**
  * Created by leon on 1/29/18.
  */
@@ -182,25 +184,26 @@ public class StringArrayUtils {
 
 
         String[] newArray = new String[(array.length) - count];
+
         count = 0;
         temp = array[0];
+
         for (int i = 1; i < array.length; i++) {
             if(isDuplicate[i]) {
                 temp += array[i];
 
             }
-            else if(!isDuplicate[i] && i == (array.length -1)) {
-                newArray[count] = temp;
+            else if(!isDuplicate[i] && i == (array.length)) {
+                newArray[newArray.length - 1] = temp;
 
             }
             else {
                 newArray[count] = temp;
                 temp = array[i];
                 count++;
-
             }
-            System.out.println(newArray[count]);
         }
+        System.out.println(Arrays.toString(newArray));
         return newArray;
     }
 

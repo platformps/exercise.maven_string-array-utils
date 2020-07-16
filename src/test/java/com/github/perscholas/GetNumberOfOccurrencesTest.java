@@ -4,31 +4,46 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class GetNumberOfOccurrencesTest {
+    private String[] testInput;
 
-    private void test(String[] array, int expected) {
-        int actual = StringArrayUtils.getNumberOfOccurrences(array, "bbb");
+    // given
+    private void test(String valueToCount, int expected) {
+        this.testInput = new String[]{"aba", "aba", "baa", "bab", "bba", "bba", "bba", "bba", "bbb", "bbb", "bbb", "baa"};
+        
+        // when
+        int actual = StringArrayUtils.getNumberOfOccurrences(testInput, valueToCount);
+
+        // then
         Assert.assertEquals(actual, expected);
     }
 
     @Test
-    public void testGetNumberOfOccurrences1() {
-        String[] array = {"aba", "aba", "baa", "bab", "bba", "bba", "bba", "bba", "bbb", "bbb"};
-        int expected = 4;
-        test(array, expected);
-    }
-
-    @Test
-    public void testGetNumberOfOccurrences2() {
-        String[] array = {"aba", "aba", "baa", "bab", "bba", "bba", "bba", "bba", "bbb", "bbb"};
+    public void test1() {
+        String valueToCount = "aba";
         int expected = 2;
-        test(array, expected);
+        test(valueToCount, expected);
     }
 
     @Test
-    public void testGetNumberOfOccurrences3() {
-        String[] array = {"aba", "aba", "baa", "bab", "bba", "bba", "bba", "bba", "bbb", "bbb"};
-        int expected = 4;
-        test(array, expected);
+    public void test2() {
+        String valueToCount = "baa";
+        int expected = 2;
+        test(valueToCount, expected);
+    }
+
+    @Test
+    public void test3() {
+        String valueToCount = "bbb";
+        int expected = 3;
+        test(valueToCount, expected);
+    }
+
+
+    @Test
+    public void test4() {
+        String valueToCount = "bab";
+        int expected = 1;
+        test(valueToCount, expected);
     }
 
 }

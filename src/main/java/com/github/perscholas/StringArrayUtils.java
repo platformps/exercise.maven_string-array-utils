@@ -1,6 +1,7 @@
 package com.github.perscholas;
 import java.util.*;
 import java.util.Arrays;
+import java.util.ArrayList;
 
 /**
  * Created by leon on 1/29/18.
@@ -146,7 +147,21 @@ public class StringArrayUtils {
      * @return array of Strings with consecutive duplicates removes
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
-        return null;
+
+        ArrayList<String> newList = new ArrayList<>();
+//        Find amount of duplicates so we can create new Array with accurate length
+//        Push non duplicates into newList
+        newList.add(array[0]);
+        System.out.println(newList);
+        for (int i = 1; i < array.length; i++) {
+            if(array[i-1] != array[i]) {
+                newList.add(array[i]);
+            }
+        }
+
+        String[] myArray = new String[newList.size()];
+        newList.toArray(myArray);
+        return myArray;
     }
 
     /**

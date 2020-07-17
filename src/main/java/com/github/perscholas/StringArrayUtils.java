@@ -133,7 +133,19 @@ public class StringArrayUtils {
      * @return array with identical contents excluding values of `value`
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
-        return null;
+
+        String[] newArray = new String [array.length - 1];
+        int j = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == valueToRemove) {
+                continue;
+            } else {
+                newArray[j] = array[i];
+                j++;
+            }
+
+        }
+        return newArray;
     }
 
     /**
@@ -141,7 +153,28 @@ public class StringArrayUtils {
      * @return array of Strings with consecutive duplicates removes
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
-        return null;
+
+        String[] newArray = new String[30];
+        int j = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (i == 0) { //set both [0] values
+                newArray[j] = array[i];
+                continue;
+            } else if (newArray[j] == array[i]) {
+                continue; //if the indices match don't save the value; increment i
+                } else {
+                    newArray[j+1] = array[i]; // if [i] & [j] do not match, save [i] at [j + 1]
+                    if (i == array.length) {
+                        continue;
+                    }
+                }
+                j++;
+            }
+        String[] newerArray = new String[j+1];
+        for (int k = 0; k < newerArray.length; k++) {
+            newerArray[k] = newArray[k];
+        }
+        return newerArray;
     }
 
     /**
@@ -149,8 +182,38 @@ public class StringArrayUtils {
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
-        return null;
+        String[] newArray = new String[30];
+        int j = 0;
+        String tempValue;
+        for (int i = 0; i < array.length; i++) {
+            if (i == 0) { //set both [0] values
+                newArray[j] = array[i];
+                continue;
+            } else if (newArray[j] == array[i]) {
+                tempValue = newArray[j]; //if the indices match save [j] as tempValue; add [i] to [j]
+                newArray[j] += array[i];
+                if ((i+1 <= array.length-1) && tempValue == array[i + 1]) { //if we don't go beyond the index limit,
+                    newArray[j] += array[i + 1];  //and tempvalue == [i+1], add [i+1] to [j]
+                    i++; //advance [i] because it will be removed and to check for a match with the next element
+                    if ((i+1 <= array.length-1) && tempValue == array[i + 1]){  //if we don't go beyond the index limit,
+                        newArray[j] += array[i + 1];  //and tempvalue == [i+1], add [i+1] to [j] again
+                        i++; // advance [i] because it will be removed
+                    } else {
+                        continue;
+                    }
+                }
+            } else {
+                newArray[j+1] = array[i]; // if [i] & [j] do not match, save [i] at [j + 1]
+                    j++; //increment [j]
+                if (i <= array.length) {
+                    continue;
+                }
+            }
+        }
+        String[] newerArray = new String[j+1];
+        for (int k = 0; k < newerArray.length; k++) {
+            newerArray[k] = newArray[k];
+        }
+        return newerArray;
     }
-
-
 }

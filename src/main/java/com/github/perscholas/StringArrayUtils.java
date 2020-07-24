@@ -1,5 +1,9 @@
 package com.github.perscholas;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Created by leon on 1/29/18.
  */
@@ -8,8 +12,9 @@ public class StringArrayUtils {
      * @param array array of String objects
      * @return first element of specified array
      */ // TODO
-    public static String getFirstElement(String[] array) {
-        return null;
+    public static String getFirstElement(String[] array)
+    {
+        return array[0];
     }
 
     /**
@@ -17,23 +22,27 @@ public class StringArrayUtils {
      * @return second element in specified array
      */
     public static String getSecondElement(String[] array) {
-        return null;
+        return array[1];
     }
 
     /**
      * @param array array of String objects
      * @return last element in specified array
      */ // TODO
-    public static String getLastElement(String[] array) {
-        return null;
+    public static String getLastElement(String[] array)
+    {
+        int last=array.length-1;
+        return array[last];
     }
 
     /**
      * @param array array of String objects
      * @return second to last element in specified array
      */ // TODO
-    public static String getSecondToLastElement(String[] array) {
-        return null;
+    public static String getSecondToLastElement(String[] array)
+    {
+        int secondToLast=array.length-2;
+        return array[secondToLast];
     }
 
     /**
@@ -41,7 +50,13 @@ public class StringArrayUtils {
      * @param value value to check array for
      * @return true if the array contains the specified `value`
      */ // TODO
-    public static boolean contains(String[] array, String value) {
+    public static boolean contains(String[] array, String value)
+    {
+        for(String s:array){
+            if(s.equals(value))
+                return true;
+
+        }
         return false;
     }
 
@@ -50,7 +65,10 @@ public class StringArrayUtils {
      * @return an array with identical contents in reverse order
      */ // TODO
     public static String[] reverse(String[] array) {
-        return null;
+        List<String> list= Arrays.asList(array);
+        Collections.reverse(list);
+        String[] reversedArray=list.toArray(array);
+        return reversedArray;
     }
 
     /**

@@ -5,7 +5,11 @@ import org.junit.Test;
 
 public class RemoveValueTest {
 
+
+    private void test(String[] array, String[] expected, String valueToRemove) {
+
     private void test(String[] array, String[] expected,String valueToRemove) {
+
         String[] actual = StringArrayUtils.removeValue(array, valueToRemove);
         Assert.assertEquals(expected, actual);
     }
@@ -13,6 +17,8 @@ public class RemoveValueTest {
     @Test
     public void testRemoveValue() {
         String[] array = {"The", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"};
+        String[] expected = {"quick", "brown", "fox", "jumps", "over","the","lazy", "dog"};
+
         String[] expected = {"quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"};
         test(array, expected,"The");
     }

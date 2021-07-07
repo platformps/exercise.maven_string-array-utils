@@ -1,5 +1,7 @@
 package com.github.perscholas;
 
+import java.util.Arrays;
+
 /**
  * Created by leon on 1/29/18.
  */
@@ -9,7 +11,7 @@ public class StringArrayUtils {
      * @return first element of specified array
      */ // TODO
     public static String getFirstElement(String[] array) {
-        return null;
+        return array[0];
     }
 
     /**
@@ -17,7 +19,7 @@ public class StringArrayUtils {
      * @return second element in specified array
      */
     public static String getSecondElement(String[] array) {
-        return null;
+        return array[1];
     }
 
     /**
@@ -25,7 +27,7 @@ public class StringArrayUtils {
      * @return last element in specified array
      */ // TODO
     public static String getLastElement(String[] array) {
-        return null;
+        return array[array.length-1];
     }
 
     /**
@@ -33,7 +35,7 @@ public class StringArrayUtils {
      * @return second to last element in specified array
      */ // TODO
     public static String getSecondToLastElement(String[] array) {
-        return null;
+        return array[array.length-2];
     }
 
     /**
@@ -42,6 +44,11 @@ public class StringArrayUtils {
      * @return true if the array contains the specified `value`
      */ // TODO
     public static boolean contains(String[] array, String value) {
+        for (String s : array) {
+            if(s.equals(value)) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -50,7 +57,13 @@ public class StringArrayUtils {
      * @return an array with identical contents in reverse order
      */ // TODO
     public static String[] reverse(String[] array) {
-        return null;
+        String[] reversedArray = new String[array.length];
+        int counter = 0;
+        for (int i = array.length-1; i >= 0; i--) {
+            reversedArray[counter] = array[i];
+            counter++;
+        }
+        return reversedArray;
     }
 
     /**
@@ -58,7 +71,13 @@ public class StringArrayUtils {
      * @return true if the order of the array is the same backwards and forwards
      */ // TODO
     public static Boolean isPalindromic(String[] array) {
-        return null;
+        String[] reversedArray = reverse(array);
+        for (int i = 0; i < array.length; i++) {
+            if(!array[i].equals(reversedArray[i])) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -66,7 +85,24 @@ public class StringArrayUtils {
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static Boolean isPangramic(String[] array) {
-        return null;
+        String temp = "";
+        int letter = 0;
+        boolean[] letterIsPresent = new boolean[26];
+        for(int i = 0; i < array.length; i++) {
+            temp = array[i].toLowerCase();
+            for(int j = 0; j < temp.length(); j++) {
+                letter = ((int) temp.charAt(j) - 97);
+                if (letter >= 0 && letter <= 25) {
+                    letterIsPresent[letter] = true;
+                }
+            }
+        }
+        for (int i = 0; i < letterIsPresent.length; i++) {
+            if(!letterIsPresent[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -75,7 +111,13 @@ public class StringArrayUtils {
      * @return number of occurrences the specified `value` has occurred
      */ // TODO
     public static int getNumberOfOccurrences(String[] array, String value) {
-        return 0;
+        int occurrenceCount = 0;
+        for (String s : array) {
+            if (s.equals(value)) {
+                occurrenceCount++;
+            }
+        }
+        return occurrenceCount;
     }
 
     /**
@@ -84,7 +126,15 @@ public class StringArrayUtils {
      * @return array with identical contents excluding values of `value`
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
-        return null;
+        String[] arrayWithValueRemoved = new String[(array.length-1)];
+        int counter = 0;
+        for (int i = 0; i < array.length; i++) {
+            if(!valueToRemove.equals(array[i])) {
+                arrayWithValueRemoved[counter] = array[i];
+                counter++;
+            }
+        }
+        return arrayWithValueRemoved;
     }
 
     /**
@@ -92,7 +142,26 @@ public class StringArrayUtils {
      * @return array of Strings with consecutive duplicates removes
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
-        return null;
+        String temp = array[0];
+        int count = 0;
+        for (int i = 1; i < array.length; i++) {
+            if(temp.equals(array[i])) {
+                array[i] = "";
+                count++;
+            }
+            else {
+                temp = array[i];
+            }
+        }
+        String[] newArray = new String[(array.length - count)];
+        count = 0;
+        for (int i = 0; i < array.length; i++) {
+            if(!"".equals(array[i])) {
+                newArray[count] = array[i];
+                count++;
+            }
+        }
+        return newArray;
     }
 
     /**
@@ -100,8 +169,38 @@ public class StringArrayUtils {
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
-        return null;
-    }
+        String temp = array[0];
+        int count = 0;
+        boolean[] isDuplicate = new boolean[array.length];
+        for (int i = 1; i < array.length; i++) {
+            if(temp.equals(array[i])) {
+                isDuplicate[i] = true;
+                count++;
+            }
+            else {
+                temp = array[i];
+            }
+        }
 
+
+        String[] newArray = new String[(array.length) - count];
+
+        count = 0;
+        temp = array[0];
+
+        for (int i = 1; i < array.length; i++) {
+            if(isDuplicate[i]) {
+                temp += array[i];
+
+            }
+            else {
+                newArray[count] = temp;
+                temp = array[i];
+                count++;
+            }
+        }
+        newArray[(newArray.length - 1)] = temp;
+        return newArray;
+    }
 
 }
